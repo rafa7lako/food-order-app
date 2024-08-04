@@ -1,0 +1,16 @@
+- Add components for displaying products, the cart (in a modal) and a checkout form (also in a modal)
+
+- Fetch the (dummy) meals data from the backend & show it on the screen (GET /meals)
+
+- Allow users to add and remove products to / from the cart
+
+- Send cart data along with user data (full name, email, street, postal code, city) to the backend (POST /orders)
+
+- Handle loading and error states
+
+
+----------------------------------------------------------------------------
+
+1. Click "Add to cart" => On Click
+2. State z pustym [] do którego dodajemy dane.
+3. Co dokładnie? Cały obiekt powiązany z kartą? Cene trza też dodać.
