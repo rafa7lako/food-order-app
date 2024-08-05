@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CartContext } from "../store/cart-context";
 
 import CartItem from "./CartItem.jsx";
+import CartButtons from "./CartButtons";
 
 export default function CartModal() {
 	const { items, calculateTotal } = useContext(CartContext);
@@ -31,6 +32,7 @@ export default function CartModal() {
 			</ul>
 
 			<p className="cart-total">${calculateTotal()}</p>
+			<CartButtons />
 		</>
 	);
 }

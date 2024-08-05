@@ -11,7 +11,8 @@ export const CartContext = createContext({
 	modalType: undefined,
 	setModalType: () => {},
 	dialog: undefined,
-	goToCheckoutFN: () => {}
+	goToCheckoutFN: () => {},
+	handleCloseCart: () => {}
 });
 
 export default function CartContextProvider({ children }) {
@@ -87,6 +88,11 @@ export default function CartContextProvider({ children }) {
 		setModalType("checkout");
 	}
 
+	function handleCloseCart() {
+		setModalType("cart");
+		dialog.current.close();
+	}
+
 
 
 
@@ -98,7 +104,8 @@ export default function CartContextProvider({ children }) {
 		modalType: modalType,
 		setModalType: setModalType,
 		dialog: dialog,
-		goToCheckoutFN: goToCheckoutFN
+		goToCheckoutFN: goToCheckoutFN,
+		handleCloseCart: handleCloseCart
 	};
 
 	return (

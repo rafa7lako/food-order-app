@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import logoImg from "../assets/logo.jpg";
 
 import CartModal from "./CartModal.jsx";
@@ -7,14 +7,12 @@ import Modal from "./Modal.jsx";
 import { CartContext } from "../store/cart-context.jsx";
 
 export default function Header() {
-
-	const {dialog, modalType, setModalType} = useContext(CartContext);
+	const { dialog, modalType, setModalType } = useContext(CartContext);
 
 	function handleOpenCart() {
 		setModalType("cart");
 		dialog.current.showModal();
 	}
-
 
 	useEffect(() => {
 		const handleModalClose = () => {
@@ -30,13 +28,9 @@ export default function Header() {
 		}
 	}, [setModalType]);
 
-	console.log(modalType);
 	return (
 		<>
-			<Modal
-				ref={dialog}
-				
-			>
+			<Modal ref={dialog}>
 				{modalType === "cart" ? <CartModal /> : <CheckoutModal />}
 			</Modal>
 
