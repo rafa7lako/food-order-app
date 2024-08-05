@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useRef } from "react";
 
 export const CartContext = createContext({
 	items: [],
@@ -7,15 +7,22 @@ export const CartContext = createContext({
 	calculateTotal: () => {},
 	modalType: undefined,
 	setModalType: () => {},
-	goToCheckoutFN: ()=>{}
+	goToCheckoutFN: ()=>{},
+	modalType: undefined,
+	setModalType: () => {},
+	dialog: undefined,
+	goToCheckoutFN: () => {}
 });
 
 export default function CartContextProvider({ children }) {
+
+	const dialog = useRef();
+
 	const [shoppingCart, setShoppingCart] = useState({
 		items: [],
 	});
 
-
+	const [modalType, setModalType] = useState("cart");
 
 	function handleAddItemToCart(id, name, price) {
 		setShoppingCart((prevShoppingCart) => {
@@ -76,6 +83,10 @@ export default function CartContextProvider({ children }) {
 			.toFixed(2);
 	};
 
+	function goToCheckoutFN() {
+		setModalType("checkout");
+	}
+
 
 
 
@@ -84,7 +95,10 @@ export default function CartContextProvider({ children }) {
 		addItemToCart: handleAddItemToCart,
 		updateItemQuantity: handleUpdateCartItemQuantity,
 		calculateTotal: calculateTotal,
-		
+		modalType: modalType,
+		setModalType: setModalType,
+		dialog: dialog,
+		goToCheckoutFN: goToCheckoutFN
 	};
 
 	return (

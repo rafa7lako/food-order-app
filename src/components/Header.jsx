@@ -4,20 +4,17 @@ import logoImg from "../assets/logo.jpg";
 import CartModal from "./CartModal.jsx";
 import CheckoutModal from "./CheckoutModal.jsx";
 import Modal from "./Modal.jsx";
+import { CartContext } from "../store/cart-context.jsx";
 
 export default function Header() {
-	const dialog = useRef();
 
-	const [modalType, setModalType] = useState("cart");
+	const {dialog, modalType, setModalType} = useContext(CartContext);
 
 	function handleOpenCart() {
 		setModalType("cart");
 		dialog.current.showModal();
 	}
 
-	function goToCheckoutFN() {
-		setModalType("checkout");
-	}
 
 	useEffect(() => {
 		const handleModalClose = () => {
@@ -38,16 +35,14 @@ export default function Header() {
 		<>
 			<Modal
 				ref={dialog}
-				buttonText={modalType === "cart" ? "Go to checkout" : "Submit order"}
-				toCheckoutBtn={goToCheckoutFN}
-				modalType={modalType}
+				
 			>
 				{modalType === "cart" ? <CartModal /> : <CheckoutModal />}
 			</Modal>
 
 			<header id="main-header">
 				<h1 id="title">
-					<img src={logoImg} alt="" />
+					<img src={logoImg} alt="reactfood logo" />
 					reactfood
 				</h1>
 				<button className="text-button" onClick={handleOpenCart}>

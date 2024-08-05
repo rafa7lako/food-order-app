@@ -1,15 +1,12 @@
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useContext, useRef, useState } from "react";
 
 import { createPortal } from "react-dom";
+import { CartContext } from "../store/cart-context";
 
-const Modal = forwardRef(function Modal(
-	{ children, buttonText, toCheckoutBtn, modalType },
-	ref
-) {	
+const Modal = forwardRef(function Modal({ children }, ref) {
 	// const formRef = useRef();
 
-
-
+	const { modalType, goToCheckoutFN } = useContext(CartContext);
 
 	return (
 		<dialog ref={ref} className="modal">
@@ -19,9 +16,9 @@ const Modal = forwardRef(function Modal(
 				<button
 					type="button"
 					className="button"
-					onClick={modalType ? toCheckoutBtn : null}
+					onClick={modalType ? goToCheckoutFN : null}
 				>
-					{buttonText}
+					{modalType === "cart" ? "Go to checkout" : "Submit order"}
 				</button>
 			</form>
 		</dialog>
