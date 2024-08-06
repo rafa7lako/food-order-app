@@ -31,19 +31,23 @@ const CheckoutModal = forwardRef(function CheckoutModal({}, ref) {
 
 		const fd = new FormData(event.target);
 		const acquisitionChannel = fd.getAll("acquisition");
-		const data = Object.fromEntries(fd.entries());
-		data.acquisition = acquisitionChannel;
+		const customer = Object.fromEntries(fd.entries());
+		customer.acquisition = acquisitionChannel;
 
 		// if(data.password !== data['confirm-password']){
 		// 	setPasswordsAreNotEqual(true)
 		// 	return;
 		// }
 
+		const data = {};
+
+		data.customer = customer;
 		data.items = items;
 		data.items.totalCost = totalCost;
 
 		console.log(data);
 		sendUserOrder(data)
+		console.log("Data submitted!");
 
 		event.target.reset();
 	}
@@ -55,24 +59,24 @@ const CheckoutModal = forwardRef(function CheckoutModal({}, ref) {
 			<form onSubmit={handleSubmit}>
 				<div className="control">
 					<label htmlFor="name">Full name:</label>
-					<input type="text" name="name" />
+					<input type="text" name="name" required />
 				</div>
 				<div className="control">
 					<label htmlFor="email">E-Mail Address:</label>
-					<input type="email" name="email" />
+					<input type="email" name="email" required/>
 				</div>
 				<div className="control">
 					<label htmlFor="street">Street:</label>
-					<input type="text" name="street" />
+					<input type="text" name="street" required/>
 				</div>
 				<div className="control-row">
 					<div className="control">
 						<label htmlFor="postal-code">Postal Code:</label>
-						<input type="number" name="postal-code" />
+						<input type="number" name="postal-code" required/>
 					</div>
 					<div className="control">
 						<label htmlFor="street">City:</label>
-						<input type="text" name="city" />
+						<input type="text" name="city" required/>
 					</div>
 				</div>
 				<br />

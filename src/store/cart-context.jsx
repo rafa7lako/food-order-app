@@ -5,18 +5,15 @@ export const CartContext = createContext({
 	addItemToCart: () => {},
 	updateItemQuantity: () => {},
 	calculateTotal: () => {},
-	modalType: undefined,
-	setModalType: () => {},
-	goToCheckoutFN: ()=>{},
+
 	modalType: undefined,
 	setModalType: () => {},
 	dialog: undefined,
 	goToCheckoutFN: () => {},
-	handleCloseCart: () => {}
+	handleCloseCart: () => {},
 });
 
 export default function CartContextProvider({ children }) {
-
 	const dialog = useRef();
 
 	const [shoppingCart, setShoppingCart] = useState({
@@ -93,9 +90,6 @@ export default function CartContextProvider({ children }) {
 		dialog.current.close();
 	}
 
-
-
-
 	const ctxValue = {
 		items: shoppingCart.items,
 		addItemToCart: handleAddItemToCart,
@@ -105,7 +99,7 @@ export default function CartContextProvider({ children }) {
 		setModalType: setModalType,
 		dialog: dialog,
 		goToCheckoutFN: goToCheckoutFN,
-		handleCloseCart: handleCloseCart
+		handleCloseCart: handleCloseCart,
 	};
 
 	return (
